@@ -27,7 +27,7 @@ int main() {
     std::cout << "\n--- Вывод начальной таблицы ---" << std::endl;
     std::cout << "Начальная таблица книг:\n" << table << std::endl;
 
-     // Изменение записи
+    // Изменение записи
     std::cout << "\n--- Изменение записи ---" << std::endl;
     table.updateBook(0, new Book("The Hobbit", "J.R.R. Tolkien"));
     std::cout << "Изменена первая книга на: 'The Hobbit' by J.R.R. Tolkien." << std::endl;

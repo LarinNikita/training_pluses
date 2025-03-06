@@ -28,13 +28,22 @@ void BookTable::addBook(Book* book) {
 
 // Метод для удаления записи по номеру
 void BookTable::removeBook(int index) {
-   if (index >= 0 && index < count) {
+    if (index >= 0 && index < count) {
         delete books[index];
-       for (int i = index; i < count - 1; ++i) {
-           books[i] = books[i + 1];
-       }
-       count--;
-   }
+        for (int i = index; i < count - 1; ++i) {
+            books[i] = books[i + 1];
+        }
+        count--;
+        if (count > 0 && count == capacity / 4) {
+            capacity /= 2;
+            Book** newBooks = new Book*[capacity];
+            for (int i = 0; i < count; ++i) {
+                newBooks[i] = books[i];
+            }
+            delete[] books;
+            books = newBooks;
+        }
+    }
 }
 
 // Метод для изменения существующей записи
@@ -54,11 +63,10 @@ Book* BookTable::operator[](int index) const {
     return nullptr;
 }
 
-
 // Перегруженный оператор вывода
 std::ostream& operator<<(std::ostream& os, const BookTable& table) {
     for(int i = 0; i < table.count; ++i) {
-       os << i + 1 << ". " << *table.books[i] << std::endl;
+        os << *table.books[i];
     }
     return os;
 }
