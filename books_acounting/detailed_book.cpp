@@ -48,7 +48,7 @@ void DetailedBook::setIsbn(const char* isbn) {
     this->isbn = strCopy(isbn);
 }
 
-// Перегруженный оператор вывода (переопределен)
+// Перегруженный оператор вывода (переопределение)
 std::ostream& operator<<(std::ostream& os, const DetailedBook& book) {
     os << static_cast<const Book&>(book) << ", Publisher: " << (book.publisher ? book.publisher : "N/A")
        << ", Year: " << book.year << ", ISBN: " << (book.isbn ? book.isbn : "N/A");

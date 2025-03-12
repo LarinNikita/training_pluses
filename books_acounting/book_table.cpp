@@ -34,8 +34,8 @@ void BookTable::removeBook(int index) {
             books[i] = books[i + 1];
         }
         count--;
-        if (count > 0 && count == capacity / 4) {
-            capacity /= 2;
+        if (count > 0 && count == capacity / 2) {
+            capacity /= 2; // Если после удаления останется только половина элементов, уменьшаем вместимость вдвое
             Book** newBooks = new Book*[capacity];
             for (int i = 0; i < count; ++i) {
                 newBooks[i] = books[i];
