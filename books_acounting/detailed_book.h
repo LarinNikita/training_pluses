@@ -22,6 +22,8 @@ public:
     void setYear(int year);
     void setIsbn(const char* isbn);
 
+    void print(std::ostream& os) const override; // Переопределяем метод print
+
     friend std::ostream& operator<<(std::ostream& os, const DetailedBook& book);
      DetailedBook& operator=(const DetailedBook& other);
 };

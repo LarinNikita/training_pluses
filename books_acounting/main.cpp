@@ -25,7 +25,8 @@ int main() {
 
     // Вывод таблицы
     std::cout << "\n--- Вывод начальной таблицы ---" << std::endl;
-    std::cout << "Начальная таблица книг:\n" << table << std::endl;
+    std::cout << "Начальная таблица книг:\n";
+    std::cout << table << std::endl;
 
     // Изменение записи
     std::cout << "\n--- Изменение записи ---" << std::endl;
@@ -34,7 +35,8 @@ int main() {
 
     // Вывод таблицы после изменений
     std::cout << "\n--- Вывод таблицы после изменения ---" << std::endl;
-    std::cout << "Таблица после изменения:\n" << table << std::endl;
+    std::cout << "Таблица после изменения:\n";
+    std::cout << table << std::endl;
 
     // Удаление записи
     std::cout << "\n--- Удаление записи ---" << std::endl;
@@ -43,12 +45,13 @@ int main() {
 
     // Вывод таблицы после удаления
     std::cout << "\n--- Вывод таблицы после удаления ---" << std::endl;
-    std::cout << "Таблица после удаления:\n" << table << std::endl;
+    std::cout << "Таблица после удаления:\n";
+    std::cout << table << std::endl;
 
     // Доступ к записи по индексу
     std::cout << "\n--- Доступ к книге по индексу ---" << std::endl;
     Book* book = table[0];
-    if(book) {
+    if (book) {
         std::cout << "Книга по индексу 0: " << *book << std::endl;
     } else {
         std::cout << "Книга по индексу 0 не найдена." << std::endl;
@@ -58,7 +61,14 @@ int main() {
     std::cout << "\n--- Получение количества записей ---" << std::endl;
     std::cout << "Всего книг в таблице: " << table.getCount() << std::endl;
 
+    // Пример с использованием указателя на базовый класс
+    std::cout << "\n--- Пример с указателем на базовый класс ---" << std::endl;
+    Book *x = new DetailedBook("1984", "George Orwell", "Secker & Warburg", 1949, "978-0451524935");
+    std::cout << *x << std::endl; // Выведется полная информация о DetailedBook
+    
+    delete x; //Чистим за собой
+
     std::cout << "\n--- Завершение работы программы ---" << std::endl;
+    
     return 0;
 }
-

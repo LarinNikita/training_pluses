@@ -48,11 +48,11 @@ void DetailedBook::setIsbn(const char* isbn) {
     this->isbn = strCopy(isbn);
 }
 
-// Перегруженный оператор вывода (переопределение)
-std::ostream& operator<<(std::ostream& os, const DetailedBook& book) {
-    os << static_cast<const Book&>(book) << ", Publisher: " << (book.publisher ? book.publisher : "N/A")
-       << ", Year: " << book.year << ", ISBN: " << (book.isbn ? book.isbn : "N/A");
-    return os;
+// Переопределенный виртуальный метод print
+void DetailedBook::print(std::ostream& os) const {
+    Book::print(os); // Вызываем метод print базового класса
+    os << ", Publisher: " << (publisher ? publisher : "N/A")
+       << ", Year: " << year << ", ISBN: " << (isbn ? isbn : "N/A");
 }
 
  // Перегруженный оператор присваивания

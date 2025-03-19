@@ -22,6 +22,8 @@ class Book {
         void setTitle(const char* title);
         void setAuthor(const char* author);
 
+        virtual void print(std::ostream& os) const;
+
         friend std::ostream& operator<<(std::ostream& os, const Book& book);
         Book& operator=(const Book& other);
 };

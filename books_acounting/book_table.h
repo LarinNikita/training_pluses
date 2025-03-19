@@ -19,6 +19,8 @@ public:
     int getCount() const;
     Book* operator[](int index) const;
 
+    void print(std::ostream& os) const;
+
     friend std::ostream& operator<<(std::ostream& os, const BookTable& table);
 };
 

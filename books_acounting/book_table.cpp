@@ -63,10 +63,15 @@ Book* BookTable::operator[](int index) const {
     return nullptr;
 }
 
+// Метод print для BookTable
+void BookTable::print(std::ostream& os) const {
+    for (int i = 0; i < count; ++i) {
+        os << *books[i] << std::endl; // Используем оператор << для Book и DetailedBook
+    }
+}
+
 // Перегруженный оператор вывода
 std::ostream& operator<<(std::ostream& os, const BookTable& table) {
-    for(int i = 0; i < table.count; ++i) {
-        os << *table.books[i];
-    }
+    table.print(os); // Вызываем метод print для BookTable
     return os;
 }

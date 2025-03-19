@@ -45,9 +45,14 @@ void Book::setAuthor(const char* author) {
     this->author = strCopy(author);
 }
 
+// Виртуальный метод print
+void Book::print(std::ostream& os) const {
+    os << "Title: " << (title ? title : "N/A") << ", Author: " << (author ? author : "N/A");
+}
+
 // Перегруженный оператор вывода
 std::ostream& operator<<(std::ostream& os, const Book& book) {
-    os << "Title: " << (book.title ? book.title : "N/A") << ", Author: " << (book.author ? book.author : "N/A");
+    book.print(os); // Вызываем виртуальный метод print
     return os;
 }
 
