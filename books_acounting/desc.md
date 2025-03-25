@@ -14,6 +14,10 @@ private:
     int capacity; // Текущая вместимость массива
     int count;    // Количество книг в таблице
 
+    В файле book_table.h Book** books означает "указатель на указатель на объект класса Book". Давайте разберем это подробнее:
+Что такое указатель?
+Указатель - это переменная, которая хранит адрес другой переменной в памяти.
+
 public:
     BookTable(); // Конструктор по умолчанию
     ~BookTable(); // Деструктор
@@ -26,6 +30,8 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const BookTable& table); // Перегруженный оператор вывода
 };
+
+Оператор :: — это оператор разрешения области видимости
 
 #endif
 ```
@@ -71,6 +77,7 @@ void BookTable::addBook(Book* book) {
     if (count == capacity) {
         capacity = capacity == 0 ? 1 : capacity * 2;
         Book** newBooks = new Book*[capacity];
+
         for (int i = 0; i < count; ++i) {
             newBooks[i] = books[i];
         }
@@ -79,6 +86,8 @@ void BookTable::addBook(Book* book) {
     }
      books[count++] = book;
 }
+
+Строка Book** newBooks = new Book*[capacity]; в файле book_table.cpp используется для динамического выделения памяти под массив указателей на объекты класса Book. Давайте разберем это подробнее:
 
 // Метод для удаления записи по номеру
 void BookTable::removeBook(int index) {
@@ -225,6 +234,12 @@ char* strCopy(const char* str) {
     return newStr;
 }
 
+Функция strCopy используется в классах Book и DetailedBook для безопасного копирования строковых полей (название книги, автор, издательство и т.д.). Поскольку в C++ строки в стиле C (массивы символов) требуют ручного управления памятью, эта функция обеспечивает:
+
+    Проверку на пустой указатель.
+    Корректное выделение памяти для копии строки.
+    Копирование строки вместе с завершающим нулевым символом.
+
 // Конструктор по умолчанию
 DetailedBook::DetailedBook() : publisher(nullptr), year(0), isbn(nullptr) {}
 
@@ -364,15 +379,19 @@ DetailedBook& DetailedBook::operator=(const DetailedBook& other) {
 
   - **Методы:**
 
-    ```cpp
-    virtual ~Book();
-    const char* getTitle() const;
-    const char* getAuthor() const;
-    void setTitle(const char* title);
-    void setAuthor(const char* author);
-    ```
+        ```cpp
+        virtual ~Book();
+        const char* getTitle() const;
+        const char* getAuthor() const;
+        void setTitle(const char* title);
+        void setAuthor(const char* author);
+        ```
 
-    Деструктор, методы для получения и установки заголовка и автора.
+        Что такое виртуальный деструктор?
+
+    Виртуальный деструктор — это деструктор, объявленный с ключевым словом virtual. Он используется в базовых классах для обеспечения того, чтобы при удалении объекта через указатель на базовый класс вызывался правильный деструктор соответствующего производного класса.
+
+        Деструктор, методы для получения и установки заголовка и автора.
 
   - **Перегруженные операторы:**
     ```cpp
